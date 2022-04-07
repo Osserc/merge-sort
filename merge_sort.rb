@@ -19,27 +19,6 @@ end
 def merge_sort(array)
     if array.length == 1
         return array
-    elsif array.length == 2
-        left_side = array.slice(0, array.length / 2)
-        right_side = array.slice(array.length / 2, array.length - 1)
-        temp = []
-
-        until left_side.empty? == true && right_side.empty? == true
-            if left_side.empty? == true && right_side.empty? == false
-                temp.push(right_side[0])
-                right_side.shift
-            elsif right_side.empty? == true && left_side.empty? == false
-                temp.push(left_side[0])
-                left_side.shift
-            elsif left_side[0] < right_side[0]
-                temp.push(left_side[0])
-                left_side.shift
-            elsif left_side[0] > right_side[0]
-                temp.push(right_side[0])
-                right_side.shift
-            end
-        end
-        return temp
     else
         left_side = array.slice(0, array.length / 2)
         right_side = array.slice(array.length / 2, array.length - 1)
@@ -50,18 +29,14 @@ def merge_sort(array)
 
         until left_side.empty? == true && right_side.empty? == true
             if left_side.empty? == true && right_side.empty? == false
-                temp.push(right_side[0])
-                right_side.shift
+                temp << right_side.shift
             elsif right_side.empty? == true && left_side.empty? == false
-                temp.push(left_side[0])
-                left_side.shift
+                temp << left_side.shift
             elsif left_side[0] < right_side[0]
-                temp.push(left_side[0])
-                left_side.shift
+                temp << left_side.shift
             elsif left_side[0] > right_side[0]
-                temp.push(right_side[0])
-                right_side.shift
-            end             
+                temp << right_side.shift
+            end
         end
         return temp
     end
@@ -70,7 +45,5 @@ def merge_sort(array)
 end
 
 array = [1, 32, 54, 34, 67, 89, 33, 5, 43, 31, 543, 234, 71]
-
-array = merge_sort(array).join(", ")
-
-puts array
+puts array.join(", ")
+puts merge_sort(array).join(", ")
